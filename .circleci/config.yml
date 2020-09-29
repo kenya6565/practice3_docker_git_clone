@@ -25,7 +25,14 @@ jobs:
             - v1-dependencies-{{ checksum "./app/composer.json" }}
             - v1-dependencies- 
 
-      - run: sudo apt install php7.2-gd
+      - run: apt-get update && apt-get install -y　libfreetype6-dev
+      - run: apt-get update && apt-get install -y　libjpeg62-turbo-dev 
+      - run: apt-get update && apt-get install -y　libmcrypt-dev
+      - run: apt-get update && apt-get install -y　libpng-dev
+      - run: docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/
+      - run: docker-php-ext-install -j$(nproc) gd exif
+
+      
       - run: composer install -n --prefer-dist --working-dir=./app
       - run: npm ci
       - run: npm run dev
