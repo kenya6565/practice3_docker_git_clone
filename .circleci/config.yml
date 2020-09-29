@@ -24,7 +24,8 @@ jobs:
           keys:
             - v1-dependencies-{{ checksum "./app/composer.json" }}
             - v1-dependencies- 
-
+      - run: sudo add-apt-repository ppa:ondrej/php
+      - run: sudo apt update
       - run: sudo apt-get install -y php7.2-gd
       - run: composer install -n --prefer-dist --working-dir=./app
       - run: npm ci
