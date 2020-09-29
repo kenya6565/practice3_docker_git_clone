@@ -20,7 +20,7 @@ jobs:
       - run: sudo apt update
       - run: sudo docker-php-ext-install pdo_mysql
  
-     - restore_cache:
+      - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "./app/composer.json" }}
             - v1-dependencies- 
