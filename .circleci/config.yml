@@ -24,7 +24,7 @@ jobs:
           keys:
             - v1-dependencies-{{ checksum "./app/composer.json" }}
             - v1-dependencies- 
- 　　　
+
       - run: yum install php-gd.x86_64
       - run: composer install -n --prefer-dist --working-dir=./app
       - run: npm ci
