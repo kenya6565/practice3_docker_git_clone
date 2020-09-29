@@ -25,17 +25,7 @@ jobs:
             - v1-dependencies-{{ checksum "./app/composer.json" }}
             - v1-dependencies- 
 
-      - run:
-          name: Install GD required dependencies
-          command: sudo apt install -y libpng-dev
-      - run:
-          name: Install missing PHP Extensions
-          command: |
-              set +o pipefail
-              composer check-platform-reqs --no-ansi | grep missing | awk '{print $1}' | sed 's|^ext-||' | \
-                  xargs -I@ sh -c 'sudo -E docker-php-ext-install @'
-              set -o pipefail
-
+      - run: sudo apt-get install php-gd
       - run: composer install -n --prefer-dist --working-dir=./app
       - run: npm ci
       - run: npm run dev
