@@ -25,7 +25,7 @@ jobs:
             - v1-dependencies-{{ checksum "./app/composer.json" }}
             - v1-dependencies- 
 
-      - run: sudo apt-get install -y php7.2-gd
+      - run: sudo apt-get install -y php7.3-gd
       - run: composer install -n --prefer-dist --working-dir=./app
       - run: npm ci
       - run: npm run dev
