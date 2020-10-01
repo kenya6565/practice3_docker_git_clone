@@ -25,21 +25,25 @@ jobs:
             - v1-dependencies-{{ checksum "./app/composer.json" }}
             - v1-dependencies- 
 
-      - run:
-         name: php-gd
-         command: |
-          sudo apt-get update && apt-get install -y libfreetype6-dev
-          sudo apt-get update && apt-get install -y libjpeg62-turbo-dev
-          sudo apt-get update && apt-get install -y libpng-dev
-          sudo docker-php-ext-configure gd --with-freetype --with-jpeg
-          sudo docker-php-ext-install -j$(nproc) gd
-      
-
+    
       - run: composer install -n --prefer-dist --working-dir=./app
+
+      - save_cache:
+          key: composer-v1-{{ checksum "./app/composer.lock" }}
+          paths:
+            - ./app/vendor
+      - restore_cache:
+          key: npm-v1-{{ checksum "./app/package-lock.json" }}
+
+
+
+
       - run: npm ci
       - run: npm run dev
 
  
+
+      
       - save_cache:
           key: v1-dependencies-{{ checksum "./app/composer.json" }}
           paths:
