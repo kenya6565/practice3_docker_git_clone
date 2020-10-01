@@ -53,6 +53,7 @@ jobs:
             export PATH=$PATH:$HOME/.nodebrew/current/bin
             echo "export PATH=$PATH:$HOME/.nodebrew/current/bin" >> ~/.bash_profile
             which npm
+            echo $HOME
 
 
 
@@ -63,7 +64,7 @@ jobs:
       - run:
           name: npm ci
           command: |
-            cd /home/circleci/.nodebrew/current/bin/npm
+            cd /home/circleci/.nodebrew/current/bin
             if [ ! -d node_modules ]; then
               npm ci
             fi 
