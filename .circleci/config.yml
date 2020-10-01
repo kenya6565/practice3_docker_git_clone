@@ -13,7 +13,7 @@ jobs:
         environment:
           - MYSQL_ALLOW_EMPTY_PASSWORD: true
           - MYSQL_DATABASE: wanderlust
-      - image: circleci/node:8.9-browsers
+      - image: circleci/node:8.9
     
     steps:
       - checkout
