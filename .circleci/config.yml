@@ -13,6 +13,7 @@ jobs:
         environment:
           - MYSQL_ALLOW_EMPTY_PASSWORD: true
           - MYSQL_DATABASE: wanderlust
+      - image: circleci/node:8.9-browsers
     
     steps:
       - checkout
@@ -38,16 +39,16 @@ jobs:
 
 
 
-      - run: 
-          name: npm preparation
-          command: |
-            curl -L git.io/nodebrew | perl - setup
-            export PATH=$HOME/.nodebrew/current/bin:$PATH
-            nodebrew setup
-            nodebrew install-binary v8.9.3
-            nodebrew use v8.9.3
-            export PATH=$PATH:$HOME/.nodebrew/current/bin
-            echo "export PATH=$PATH:$HOME/.nodebrew/current/bin" >> ~/.bash_profile
+      # - run: 
+      #     name: npm preparation
+      #     command: |
+      #       curl -L git.io/nodebrew | perl - setup
+      #       export PATH=$HOME/.nodebrew/current/bin:$PATH
+      #       nodebrew setup
+      #       nodebrew install-binary v8.9.3
+      #       nodebrew use v8.9.3
+      #       export PATH=$PATH:$HOME/.nodebrew/current/bin
+      #       echo "export PATH=$PATH:$HOME/.nodebrew/current/bin" >> ~/.bash_profile
 
 
 
