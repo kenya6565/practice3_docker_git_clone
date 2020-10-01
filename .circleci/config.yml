@@ -24,7 +24,7 @@ jobs:
           keys:
             - v1-dependencies-{{ checksum "./app/composer.json" }}
             - v1-dependencies- 
-      - run: sudo phpenmod gd
+     
       - run:
           name: Install GD library
           command: sudo apt-get install -y libfreetype6-dev libjpeg62-turbo-dev libpng-dev && sudo docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ && sudo docker-php-ext-install -j$(nproc) gd
