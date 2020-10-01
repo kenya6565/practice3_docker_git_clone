@@ -63,9 +63,9 @@ jobs:
       - run:
           name: npm ci
           command: |
-            
+            cd /home/circleci/.nodebrew/current/bin/npm
             if [ ! -d node_modules ]; then
-              npm install
+              npm ci
             fi 
       
       - save_cache:
