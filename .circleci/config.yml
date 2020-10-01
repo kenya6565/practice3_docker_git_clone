@@ -13,7 +13,7 @@ jobs:
         environment:
           - MYSQL_ALLOW_EMPTY_PASSWORD: true
           - MYSQL_DATABASE: wanderlust
-      - image: circleci/node:8.9
+      # - image: circleci/node:8.9
     
     steps:
       - checkout
@@ -52,7 +52,13 @@ jobs:
 
 
 
-      - run: npm ci
+      # - run: npm ci
+      - run:
+          name: npm ci
+          command: |
+            if [ ! -d node_modules ]; then
+              npm ci
+            fi
       - run: npm run dev
 
  
