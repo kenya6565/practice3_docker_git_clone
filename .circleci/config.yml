@@ -28,9 +28,9 @@ jobs:
       - run:
          name: php-gd
          command: |
-          apt-get update && apt-get install -y libfreetype6-dev
-          apt-get update && apt-get install -y libjpeg62-turbo-dev
-          apt-get update && apt-get install -y libpng-dev
+          sudo apt-get update && apt-get install -y libfreetype6-dev
+          sudo apt-get update && apt-get install -y libjpeg62-turbo-dev
+          sudo apt-get update && apt-get install -y libpng-dev
           docker-php-ext-configure gd --with-freetype --with-jpeg
           docker-php-ext-install -j$(nproc) gd
       
