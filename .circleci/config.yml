@@ -52,6 +52,7 @@ jobs:
             nodebrew use v8.9.3
             export PATH=$PATH:$HOME/.nodebrew/current/bin
             echo "export PATH=$PATH:$HOME/.nodebrew/current/bin" >> ~/.bash_profile
+            which npm
 
 
 
