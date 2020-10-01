@@ -54,6 +54,7 @@ jobs:
             echo "export PATH=$PATH:$HOME/.nodebrew/current/bin" >> ~/.bash_profile
             which npm
             echo $HOME
+            echo $PATH
 
 
 
