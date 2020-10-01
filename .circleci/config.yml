@@ -31,8 +31,8 @@ jobs:
           sudo apt-get update && apt-get install -y libfreetype6-dev
           sudo apt-get update && apt-get install -y libjpeg62-turbo-dev
           sudo apt-get update && apt-get install -y libpng-dev
-          docker-php-ext-configure gd --with-freetype --with-jpeg
-          docker-php-ext-install -j$(nproc) gd
+          sudo docker-php-ext-configure gd --with-freetype --with-jpeg
+          sudo docker-php-ext-install -j$(nproc) gd
       
 
       - run: composer install -n --prefer-dist --working-dir=./app
