@@ -62,9 +62,9 @@ jobs:
       - run:
           name: npm ci
           command: |
-            cd ./app
+            
             if [ ! -d node_modules ]; then
-              npm ci
+              npm install
             fi 
       
       - save_cache:
