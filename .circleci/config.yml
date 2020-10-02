@@ -6,6 +6,7 @@ jobs:
         environment:
           - APP_DEBUG: false
           - APP_ENV: testing
+          - APP_KEY: base64:4VGyTmeb599662WOlreyolTT/Wrqe6Hz7mlBK08uI3o=
           - DB_CONNECTION: mysql
           - DB_PORT: 3306
           - DB_HOST: mysql
@@ -70,11 +71,11 @@ jobs:
           working_directory: ./app
           command: npm run dev
 
-      - run: echo "APP_KEY=" > .env.example
       - run: 
           name: php artisan 
           working_directory: ./app
           command: |
+            cp .env.example .env
             php artisan key:generate
             php artisan migrate --seed
       - run:
