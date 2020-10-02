@@ -84,7 +84,9 @@ jobs:
       - run: 
           name: php artisan key:generate
           working_directory: ./app
-          command: php artisan key:generate
+          command: |
+          cp .env.example .env
+          php artisan key:generate
       - run: 
           name: php artisan migrate --seed
           working_directory: ./app
