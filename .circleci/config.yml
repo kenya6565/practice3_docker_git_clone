@@ -2,7 +2,7 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: circleci/php:7.2-cli
+      - image: circleci/php:7.2-node-browsers
         environment:
           - APP_DEBUG: false
           - APP_ENV: local
@@ -63,7 +63,6 @@ jobs:
           key: npm-v1-{{ checksum "./app/package-lock.json" }}
 
       - run:
-
           name: npm ci
           command: |
             which npm
