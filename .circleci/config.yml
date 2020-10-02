@@ -14,8 +14,6 @@ jobs:
         environment:
           - MYSQL_ALLOW_EMPTY_PASSWORD: true
           - MYSQL_DATABASE: wanderlust
-          - MYSQL_HOST: mysql
-      # - image: circleci/node:8.9
     
     steps:
       - checkout
@@ -41,26 +39,7 @@ jobs:
           key: composer-v1-{{ checksum "./app/composer.lock" }}
           paths:
             - ./app/vendor
-     
-
-
-      # - run: 
-      #     name: npm preparation
-      #     command: |
-      #       curl -L git.io/nodebrew | perl - setup
-      #       export PATH=$HOME/.nodebrew/current/bin:$PATH
-      #       nodebrew setup
-      #       nodebrew install-binary v8.9.3
-      #       nodebrew use v8.9.3
-      #       export PATH=$PATH:$HOME/.nodebrew/current/bin
-      #       echo "export PATH=$PATH:$HOME/.nodebrew/current/bin" >> ~/.bash_profile
-      #       which npm
-      #       echo $HOME
-      #       echo $PATH
-
-
-
-      # - run: npm ci
+    
       - restore_cache:
           key: npm-v1-{{ checksum "./app/package-lock.json" }}
 
@@ -82,18 +61,14 @@ jobs:
           working_directory: ./app
           command: npm run dev
 
-      - run: echo "APP_KEY=" > .env.testing
+      - run: echo "APP_KEY=" > .env.example
       - run: 
-          name: php artisan key:generate
+          name: php artisan 
           working_directory: ./app
           command: |
             cp .env.example .env
             php artisan key:generate
-      - run: 
-          name: php artisan migrate --seed
-          working_directory: ./app
-          command: php artisan migrate --seed
-
+            php artisan migrate --seed
       - run:
           name: php test
           command: ./app/vendor/bin/phpunit
