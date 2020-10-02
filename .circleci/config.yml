@@ -64,7 +64,7 @@ jobs:
 
       - run:
           name: npm ci
-          working_directory: ~/app/app
+          working_directory: ./app
           command: |
             if [ ! -d node_modules ]; then
               npm ci 
@@ -75,7 +75,11 @@ jobs:
           paths:
             - node_modules
 
-      - run: npm run dev
+      - run: 
+          name: npm run dev
+          working_directory: ./app
+          command: |
+            npm run dev
 
  
 
