@@ -67,7 +67,7 @@ jobs:
           command: |
           if [ ! -d node_modules ]; then
             npm ci --working-dir=./app
-          fi 
+          fi
       
       - save_cache:
           key: npm-v1-{{ checksum "./app/package-lock.json" }}
