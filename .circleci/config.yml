@@ -75,7 +75,6 @@ jobs:
           name: php artisan 
           working_directory: ./app
           command: |
-            cp .env.example .env
             php artisan key:generate
             php artisan migrate --seed
       - run:
