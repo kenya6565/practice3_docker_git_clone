@@ -5,8 +5,9 @@ jobs:
       - image: circleci/php:7.2-node-browsers
         environment:
           - APP_DEBUG: false
-          - APP_ENV: local
-          - DB_CONNECTION: mysql
+          - APP_ENV: testing
+          - APP_KEY: base64:4VGyTmeb599662WOlreyolTT/Wrqe6Hz7mlBK08uI3o=
+          - DB_CONNECTION: circleci
           - DB_HOST: mysql
           - DB_DATABASE: wanderlust
           - DB_USERNAME: ken
@@ -71,7 +72,7 @@ jobs:
           command: |
             cp .env.example .env
             php artisan key:generate
-            docker-compose run app php artisan migrate --seed
+            php artisan migrate --seed
       - run:
           name: php test
           command: ./app/vendor/bin/phpunit
