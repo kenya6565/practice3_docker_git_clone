@@ -14,6 +14,9 @@ jobs:
         environment:
           - MYSQL_ALLOW_EMPTY_PASSWORD: true
           - MYSQL_DATABASE: wanderlust
+          # - MYSQL_USER: ken
+          # - MYSQL_ROOT_PASSWORD: Nanryou1
+          # - MYSQL_PASSWORD: Nanryou1
     
     steps:
       - checkout
@@ -68,7 +71,7 @@ jobs:
           command: |
             cp .env.example .env
             php artisan key:generate
-            php artisan migrate --seed
+            docker-compose run app php artisan migrate --seed
       - run:
           name: php test
           command: ./app/vendor/bin/phpunit
