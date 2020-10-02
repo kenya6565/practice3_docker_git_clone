@@ -42,19 +42,19 @@ jobs:
      
 
 
-      - run: 
-          name: npm preparation
-          command: |
-            curl -L git.io/nodebrew | perl - setup
-            export PATH=$HOME/.nodebrew/current/bin:$PATH
-            nodebrew setup
-            nodebrew install-binary v8.9.3
-            nodebrew use v8.9.3
-            export PATH=$PATH:$HOME/.nodebrew/current/bin
-            echo "export PATH=$PATH:$HOME/.nodebrew/current/bin" >> ~/.bash_profile
-            which npm
-            echo $HOME
-            echo $PATH
+      # - run: 
+      #     name: npm preparation
+      #     command: |
+      #       curl -L git.io/nodebrew | perl - setup
+      #       export PATH=$HOME/.nodebrew/current/bin:$PATH
+      #       nodebrew setup
+      #       nodebrew install-binary v8.9.3
+      #       nodebrew use v8.9.3
+      #       export PATH=$PATH:$HOME/.nodebrew/current/bin
+      #       echo "export PATH=$PATH:$HOME/.nodebrew/current/bin" >> ~/.bash_profile
+      #       which npm
+      #       echo $HOME
+      #       echo $PATH
 
 
 
@@ -63,11 +63,12 @@ jobs:
           key: npm-v1-{{ checksum "./app/package-lock.json" }}
 
       - run:
-          name: /home/circleci/.nodebrew/current/bin/npm ci
+
+          name: npm ci
           command: |
-           
+            which npm
             if [ ! -d node_modules ]; then
-              /home/circleci/.nodebrew/current/bin/npm ci
+              npm ci
             fi 
       
       - save_cache:
