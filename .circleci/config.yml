@@ -81,11 +81,14 @@ jobs:
           command: |
             npm run dev
 
- 
-
-      
-      
       - run: echo "APP_KEY=" > .env.testing
-      - run: php artisan key:generate
-      - run: php artisan migrate --seed
-      - run: ./app/vendor/bin/phpunit
+      - run: 
+          working_directory: ./app
+          command: php artisan key:generate
+      - run: 
+          working_directory: ./app
+          command: php artisan migrate --seed
+
+      - run:
+          name: php test
+          command: ./app/vendor/bin/phpunit
