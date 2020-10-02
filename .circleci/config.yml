@@ -78,14 +78,15 @@ jobs:
       - run: 
           name: npm run dev
           working_directory: ./app
-          command: |
-            npm run dev
+          command: npm run dev
 
       - run: echo "APP_KEY=" > .env.testing
       - run: 
+          name: php artisan key:generate
           working_directory: ./app
           command: php artisan key:generate
       - run: 
+          name: php artisan migrate --seed
           working_directory: ./app
           command: php artisan migrate --seed
 
