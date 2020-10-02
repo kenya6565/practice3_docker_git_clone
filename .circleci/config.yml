@@ -14,6 +14,7 @@ jobs:
         environment:
           - MYSQL_ALLOW_EMPTY_PASSWORD: true
           - MYSQL_DATABASE: wanderlust
+          - MYSQL_HOST: mysql
       # - image: circleci/node:8.9
     
     steps:
