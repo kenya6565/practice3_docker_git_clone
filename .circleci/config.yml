@@ -22,9 +22,14 @@ jobs:
     steps:
       - checkout
     
-      - run: sudo apt update
-      - run: sudo docker-php-ext-install pdo_mysql
- 
+      - run:
+          name: get ready for mysql
+          command: |
+            sudo apt-get update
+            sudo apt-get install libpq-dev
+            sudo docker-php-ext-install pdo_mysql
+            dockerize -wait tcp://localhost:3306 -timeout 1m
+
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "./app/composer.json" }}
@@ -70,8 +75,8 @@ jobs:
           name: php artisan 
           working_directory: ./app
           command: |
-            php artisan key:generate
             cp .env.example .env
+            php artisan key:generate
             php artisan migrate --seed
       - run:
           name: php test
