@@ -8,13 +8,13 @@ jobs:
           - DB_CONNECTION: mysql
           - DB_PORT: 3306
           - DB_HOST: 127.0.0.1
-          - DB_DATABASE: wanderlust
-          - DB_USERNAME: ken
+          - DB_DATABASE: ${DATABASE}
+          - DB_USERNAME: ${USERNAME}
           - DB_PASSWORD: ${USERPASS}
       - image: circleci/mysql:5.7
         environment:
-          - MYSQL_DATABASE: wanderlust
-          - MYSQL_USER: ken
+          - MYSQL_DATABASE: ${DATABASE}
+          - MYSQL_USER: ${USERNAME}
           - MYSQL_ROOT_PASSWORD: ${ROOTPASS}
           - MYSQL_PASSWORD: ${USERPASS}
     
@@ -79,4 +79,4 @@ jobs:
             php artisan migrate --seed
       - run:
           name: php test
-          command: ./app/vendor/bin/phpunit
+          command: vendor/bin/phpunit
