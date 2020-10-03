@@ -12,6 +12,7 @@ jobs:
           - DB_HOST: mysql
           - DB_DATABASE: wanderlust
           - DB_USERNAME: ken
+          - DB_PASSWORD: Nanryou1
       - image: circleci/mysql:5.7
         environment:
           - MYSQL_DATABASE: wanderlust

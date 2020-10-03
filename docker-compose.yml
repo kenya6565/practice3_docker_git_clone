@@ -1,5 +1,6 @@
 version: '3.3'
 services:
+
    nginx:
     build: ./nginx
     container_name: "nginx"
@@ -9,6 +10,7 @@ services:
       - app
     volumes:
       - .:/app
+
    app:
     build: ./php
     container_name: "php"
@@ -16,6 +18,7 @@ services:
       - .:/app
     depends_on:
       - mysql
+
    mysql:
     build: ./mysql
     restart: always
