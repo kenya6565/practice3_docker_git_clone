@@ -73,7 +73,7 @@ jobs:
 
       - run: 
           name: php artisan 
-          working_directory: ./app/app
+          working_directory: ./app
           command: |
             cp .env.example .env
             php artisan key:generate
