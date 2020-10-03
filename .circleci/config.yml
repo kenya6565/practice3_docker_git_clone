@@ -10,12 +10,13 @@ jobs:
           - DB_HOST: 127.0.0.1
           - DB_DATABASE: wanderlust
           - DB_USERNAME: ken
+          - DB_PASSWORD: ${USERPASS}
       - image: circleci/mysql:5.7
         environment:
-          - MYSQL_ALLOW_EMPTY_PASSWORD: true
           - MYSQL_DATABASE: wanderlust
           - MYSQL_USER: ken
-       
+          - MYSQL_ROOT_PASSWORD: ${ROOTPASS}
+          - MYSQL_PASSWORD: ${USERPASS}
     
     steps:
       - checkout
