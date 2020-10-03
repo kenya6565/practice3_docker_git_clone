@@ -14,7 +14,6 @@ jobs:
           - DB_USERNAME: ken
       - image: circleci/mysql:5.7
         environment:
-          - MYSQL_ALLOW_EMPTY_PASSWORD: true
           - MYSQL_DATABASE: wanderlust
           - MYSQL_USER: ken
           - MYSQL_ROOT_PASSWORD: Nanryou1
@@ -72,11 +71,12 @@ jobs:
           command: npm run dev
 
       - run: 
-          name: php artisan 
+          name: migrate
           working_directory: ./app
           command: |
             cp .env.example .env
             php artisan key:generate
+            php artisan config:cache
             php artisan migrate --seed
       - run:
           name: php test
