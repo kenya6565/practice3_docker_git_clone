@@ -42,12 +42,12 @@ jobs:
       - run:
           name: Install GD library
           command: sudo apt-get install -y libfreetype6-dev libjpeg62-turbo-dev libpng-dev && sudo docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ && sudo docker-php-ext-install -j$(nproc) gd
-          
+
       - run: composer install -n --prefer-dist --working-dir=./app
 
       - run: 
-      working_directory: ./app
-      command: composer dump-autoload --optimize
+          working_directory: ./app
+          command: composer dump-autoload --optimize
 
       - save_cache:
           key: composer-v1-{{ checksum "./app/composer.lock" }}
