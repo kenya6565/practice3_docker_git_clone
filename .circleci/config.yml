@@ -83,6 +83,7 @@ jobs:
             php artisan key:generate
             php artisan config:cache
             php artisan migrate --seed
+
       - run:
           name: php test
-          command: ./app/vendor/bin/phpunit
+          command: ./app/vendor/bin/phpunit tests/Feature/Test.php
