@@ -79,4 +79,4 @@ jobs:
             php artisan migrate --seed
       - run:
           name: php test
-          command: vendor/bin/phpunit
+          command: ./app/vendor/bin/phpunit
