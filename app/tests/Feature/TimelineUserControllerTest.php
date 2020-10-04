@@ -11,7 +11,7 @@ use Illuminate\Http\UploadedFile;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\Feature\ImageService;
 
-class TimelineControllerTest extends TestCase
+class TimelineUserControllerTest extends TestCase
 {
   
     //use RefreshDatabase;
