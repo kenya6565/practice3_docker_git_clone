@@ -84,6 +84,9 @@ jobs:
             php artisan config:cache
             php artisan migrate --seed
 
+
       - run:
           name: php test
-          command: ./app/vendor/bin/phpunit
+          command: |
+          ./app/vendor/bin/phpunit tests/Feature/TimelineGuestControllerTest.php
+          ./app/vendor/bin/phpunit tests/Feature/TimelineUserControllerTest.php
