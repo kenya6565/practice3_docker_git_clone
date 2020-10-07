@@ -101,7 +101,7 @@ class TimelineUserControllerTest extends TestCase
         Storage::fake('design'); // テスト後ファイルは削除される
         // UploadedFileクラス用意
         $uploadedFile = UploadedFile::fake()->image('design.jpg');
-        $uploadedFile->move('storage/framework/testing/disks/design');
+        $uploadedFile->move('./app/storage/framework/testing/disks/design');
         // storage/framework/testing/disks/design内に該当ファイルが存在するか
         // S3にアップロードされたかはS3のバケットを確認しました。
         Storage::disk('design')->assertExists($uploadedFile->getFilename());
