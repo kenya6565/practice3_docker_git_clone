@@ -96,17 +96,17 @@ class TimelineUserControllerTest extends TestCase
     }
     
     //画像がアップされてるか
-    // public function testUploadImage()
-    // {
-    //     Storage::fake('design'); // テスト後ファイルは削除される
-    //     // UploadedFileクラス用意
-    //     $uploadedFile = UploadedFile::fake()->image('design.jpg');
-    //     $uploadedFile->move('storage/framework/testing/disks/design');
-    //     // storage/framework/testing/disks/design内に該当ファイルが存在するか
-    //     // S3にアップロードされたかはS3のバケットを確認しました。
-    //     Storage::disk('design')->assertExists($uploadedFile->getFilename());
+    public function testUploadImage()
+    {
+        Storage::fake('design'); // テスト後ファイルは削除される
+        // UploadedFileクラス用意
+        $uploadedFile = UploadedFile::fake()->image('design.jpg');
+        $uploadedFile->move('storage/framework/testing/disks/design');
+        // storage/framework/testing/disks/design内に該当ファイルが存在するか
+        // S3にアップロードされたかはS3のバケットを確認しました。
+        Storage::disk('design')->assertExists($uploadedFile->getFilename());
 
-    // }
+    }
     
     // public function test_follow()
     // {
