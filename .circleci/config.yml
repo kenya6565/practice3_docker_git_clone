@@ -33,19 +33,17 @@ jobs:
           keys:
             - v1-dependencies-{{ checksum "./app/composer.json" }}
             - v1-dependencies- 
+            
       - save_cache:
           key: v1-dependencies-{{ checksum "./app/composer.json" }}
           paths:
             - ./app/vendor
  
-
       - run:
           name: Install GD library
           command: sudo apt-get install -y libfreetype6-dev libjpeg62-turbo-dev libpng-dev && sudo docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ && sudo docker-php-ext-install -j$(nproc) gd
 
       - run: composer install -n --prefer-dist --working-dir=./app
-
-  
 
       - save_cache:
           key: composer-v1-{{ checksum "./app/composer.lock" }}
@@ -81,7 +79,6 @@ jobs:
             php artisan key:generate
             php artisan config:cache
             php artisan migrate --seed
-
 
       - run:
           name: php test
