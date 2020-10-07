@@ -1,5 +1,6 @@
 version: '3.3'
 services:
+
    nginx:
     build: ./nginx
     container_name: "nginx"
@@ -9,7 +10,7 @@ services:
       - app
     volumes:
       - .:/app
-  
+
    app:
     build: ./php
     container_name: "php"
@@ -17,17 +18,16 @@ services:
       - .:/app
     depends_on:
       - mysql
-  
 
    mysql:
     build: ./mysql
     restart: always
     container_name: "mysql"
     environment:
-      MYSQL_DATABASE: wanderlust
-      MYSQL_USER: ken
-      MYSQL_PASSWORD: Nanryou1
-      MYSQL_ROOT_PASSWORD: Nanryou1
+      MYSQL_DATABASE: ${DATABASE}
+      MYSQL_USER: ${USERNAME}
+      MYSQL_PASSWORD: ${USERPASS}
+      MYSQL_ROOT_PASSWORD: ${ROOTPASS}
     ports:
       - "3307:3306"
     volumes:

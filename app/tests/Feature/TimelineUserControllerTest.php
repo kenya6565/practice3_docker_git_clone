@@ -6,12 +6,15 @@ use App\User;
 use App\Post;
 use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\Feature\ImageService;
+use App\Http\Controllers\Controller;
 
-class TimelineControllerTest extends TestCase
+
+class TimelineUserControllerTest extends TestCase
 {
   
     //use RefreshDatabase;
@@ -37,13 +40,14 @@ class TimelineControllerTest extends TestCase
         $this->assertTrue(Auth::check());
      
          // ログアウトを実行
-        $response = $this->post('logout');
-     
+        Auth::logout();
+        
+        // Welcomeページにリダイレクトすることを確認
+        //$response->assertRedirect('/');
          // 認証されていない
-        $this->assertFalse(Auth::check());
+        $this->assertGuest($guard = null);
      
-         // Welcomeページにリダイレクトすることを確認
-        $response->assertRedirect('/');
+        
     }
     
     public function test_showPostDetail()
@@ -97,7 +101,7 @@ class TimelineControllerTest extends TestCase
         Storage::fake('design'); // テスト後ファイルは削除される
         // UploadedFileクラス用意
         $uploadedFile = UploadedFile::fake()->image('design.jpg');
-        $uploadedFile->move('storage/framework/testing/disks/design');
+        $uploadedFile->move('./app/storage/framework/testing/disks/design');
         // storage/framework/testing/disks/design内に該当ファイルが存在するか
         // S3にアップロードされたかはS3のバケットを確認しました。
         Storage::disk('design')->assertExists($uploadedFile->getFilename());
